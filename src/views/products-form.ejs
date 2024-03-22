@@ -1,0 +1,43 @@
+<%- include("includes/head"); %>
+<%- include("includes/nav", { activeMenu: "products" }); %>
+
+<div class="container-lg pt-5">
+  <h4 class="text-center mb-4"><%= (!data) ? "Adicionar Novo Produto" : "Edite a Categoria" %></h4>
+
+  <form class="mb-4">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="form-produtcs-image" style="width: 100%;">
+            <img src="<%= (!data) ? "" : data.image %>" class="rounded" width="100%" height="300" alt="">
+          </label>
+          <input type="file" class="form-control" id="form-produtcs-image" style="display: none;">
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="form-group">
+          <label for="form-produtcs-title">Título do Produto:</label>
+          <input type="text" class="form-control" id="form-produtcs-title" value="<%= (!data) ? "" : data.title %>">
+        </div>
+        <div class="form-group">
+          <label for="form-produtcs-price">Preço do Produto:</label>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">R$</span>
+            </div>
+            <input type="number" class="form-control" id="form-produtcs-price" value="<%= (!data) ? "" : data.price %>">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="form-produtcs-inventory">Estoque do Produto:</label>
+          <input type="number" class="form-control" id="form-produtcs-inventory" value="<%= (!data) ? "" : data.inventory %>">
+        </div>
+        <button type="submit" class="btn btn-success"><%= (!data) ? "Criar Novo Produto" : "Salvar Alterações" %></button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<%- include("includes/footer.ejs") %>

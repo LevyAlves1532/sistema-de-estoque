@@ -1,0 +1,27 @@
+<%- include("includes/head"); %>
+<%- include("includes/nav", { activeMenu: "products" }); %>
+
+<div class="container-lg pt-5">
+  <h4 class="text-center">Todos os Produtos</h4>
+  <div class="ml-auto" style="width: fit-content;">
+    <a href="/products/add" class="btn btn-success">Adicionar Produto</a>
+  </div>
+
+  <div class="responsive-table mt-4">
+    <table class="table table-dark">
+      <tr>
+        <td><img src="https://casasfreire.agilecdn.com.br/celular-motorola-moto-e13-64g-verde_136928.png" class="rounded img-thumbnail" width="60" height="60" alt=""></td>
+        <td style="vertical-align: middle;">Motorola Moto E13 64G Verde</td>
+        <td style="vertical-align: middle;">R$ 1280,00</td>
+        <td style="vertical-align: middle;">16 Unidades</td>
+        <td style="vertical-align: middle;">
+          <a href="/products/3132312321" class="text-info">Editar</a>
+          -
+          <a href="/products/3132312321/delete" class="text-danger">Deletar</a>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<%- include("includes/footer.ejs") %>

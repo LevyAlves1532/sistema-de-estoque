@@ -1,0 +1,28 @@
+<%- include("includes/head.ejs") %>
+
+<section class="wrapper-sign-in">
+  <div class="container-lg">
+    <div class="sign-in-form rounded">
+      <h4 class="text-center mb-4">Faça seu Login</h4>
+
+      <form method="post" action="/account/sign-in/user" class="mb-4">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <div class="form-group">
+          <label for="form-sign-in-email">E-mail:</label>
+          <input type="email" class="form-control" name="email" id="form-sign-in-email">
+        </div>
+        <div class="form-group">
+          <label for="form-sign-in-password">Senha:</label>
+          <input type="password" class="form-control" name="password" id="form-sign-in-password">
+        </div>
+        <button type="submit" class="btn btn-primary">Logar</button>
+      </form>
+
+      <p class="text-center text-dark">Não tem conta? <a href="/account/sign-up">Clique aqui</a>!</p>
+
+      <%- include("includes/messages.ejs") %>
+    </div>
+  </div>
+</section>
+
+<%- include("includes/footer.ejs") %>

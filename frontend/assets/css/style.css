@@ -1,0 +1,24 @@
+.wrapper-sign-in,
+.wrapper-sign-up {
+  width: 100%;
+  height: 100vh;
+  background-color: #343a40;
+}
+
+.wrapper-sign-in .container-lg,
+.wrapper-sign-up .container-lg {
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper-sign-in .sign-in-form,
+.wrapper-sign-up .sign-up-form {
+  max-width: 375px;
+  width: 100%;
+  padding: 20px;
+  background-color: #FFF;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+}

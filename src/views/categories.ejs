@@ -1,0 +1,29 @@
+<%- include("includes/head"); %>
+<%- include("includes/nav", { activeMenu: "categories" }); %>
+
+<div class="container-lg pt-5">
+  <h4 class="text-center">Todas as Categorias</h4>
+  <div class="ml-auto" style="width: fit-content;">
+    <a href="/categories/add" class="btn btn-success">Adicionar Categoria</a>
+  </div>
+
+  <%- include("includes/messages"); %>
+
+  <div class="responsive-table mt-4">
+    <table class="table table-dark">
+      <% categories.forEach(category => { %>
+        <tr>
+          <td style="vertical-align: middle;"><%= category.name %></td>
+          <td style="vertical-align: middle;"><%= category.slug %></td>
+          <td style="vertical-align: middle;">
+            <a href="/categories/<%= category._id %>" class="text-info">Editar</a>
+            -
+            <a href="/categories/<%= category._id %>/delete" class="text-danger">Deletar</a>
+          </td>
+        </tr>
+      <% }) %>
+    </table>
+  </div>
+</div>
+
+<%- include("includes/footer.ejs") %>
