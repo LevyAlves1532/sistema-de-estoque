@@ -20,6 +20,11 @@ class Categories {
     return category;
   }
 
+  async getFromSlug(slug) {
+    const category = await CategoriesModel.find({ slug });
+    return category[0];
+  }
+
   async getAllFromIdUser(_id_user) {
     const categories = await CategoriesModel.find({ _id_user })
       .sort({ name: 1 });
@@ -30,7 +35,7 @@ class Categories {
     this.validate();
     if (this.errors.length > 0) return;
 
-    await this.isCategory();
+    await this.isCategory(_id_user);
     if (this.errors.length > 0) return;
 
     this.category = await CategoriesModel.create({ _id_user, ...this.body });
@@ -53,8 +58,8 @@ class Categories {
     return category;
   }
 
-  async isCategory() {
-    this.category = await CategoriesModel.findOne({ name: this.body.name });
+  async isCategory(_id_user) {
+    this.category = await CategoriesModel.findOne({ name: this.body.name, _id_user });
     if (this.category) this.errors.push("Já existe uma categoria com esse nome!");
   }
 

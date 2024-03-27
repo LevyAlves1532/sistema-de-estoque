@@ -18,6 +18,27 @@ exports.delete = async (req, res) => {
   return;
 };
 
+exports.edit = async (req, res) => {
+  try {
+    if (!req.params.id) return;
+
+    const categoriesModel = new CategoriesModel(req.body);
+    await categoriesModel.up(req.params.id);
+
+    if (categoriesModel.errors.length > 0) {
+      req.flash("errors", categoriesModel.errors);
+      req.session.save(() => res.redirect(`/categories/${req.params.id}`));
+      return;
+    }
+
+    req.flash("success", "Categoria editada com sucesso.");
+    req.session.save(() => res.redirect(`/categories/${categoriesModel.category._id}`));
+  } catch(e) {
+    console.log(e);
+    res.render("404");
+  }
+};
+
 exports.form = (edit) => async (req, res) => {
   let data = null;
   
@@ -47,7 +68,7 @@ exports.register = async (req, res) => {
       return;
     }
 
-    req.flash("success", "Sua categoria foi criada co sucesso.");
+    req.flash("success", "Sua categoria foi criada com sucesso.");
     req.session.save(() => {
       return res.redirect("/categories");
     });
@@ -55,25 +76,4 @@ exports.register = async (req, res) => {
     console.log(e);
     res.render("404");
   }
-}
-
-exports.edit = async (req, res) => {
-  try {
-    if (!req.params.id) return;
-
-    const categoriesModel = new CategoriesModel(req.body);
-    await categoriesModel.up(req.params.id);
-
-    if (categoriesModel.errors.length > 0) {
-      req.flash("errors", categoriesModel.errors);
-      req.session.save(() => res.redirect(`/categories/${req.params.id}`));
-      return;
-    }
-
-    req.flash("success", "Categoria editada com sucesso.");
-    req.session.save(() => res.redirect(`/categories/${categoriesModel.category._id}`));
-  } catch(e) {
-    console.log(e);
-    res.render("404");
-  }
-}
+};

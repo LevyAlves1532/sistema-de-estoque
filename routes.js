@@ -2,6 +2,7 @@ const express = require("express");
 const route = express.Router();
 
 const middleware = require("./src/middlewares/middlewares");
+const uploads = require("./src/middlewares/uploads");;
 
 const homeController = require("./src/controllers/homeController");
 const accountController = require("./src/controllers/accountController");
@@ -30,7 +31,9 @@ route.get("/categories/:id/delete", middleware.isLogged, categoriesController.de
 // PRODUCTS
 route.get("/products", middleware.isLogged, productsController.index);
 route.get("/products/add", middleware.isLogged, productsController.form(false));
+route.post("/products/add/form", middleware.isLogged, uploads.single("image"), productsController.register);
 route.get("/products/:id", middleware.isLogged, productsController.form(true));
+route.post("/products/:id/edit", middleware.isLogged, uploads.single("image"), productsController.edit);
 route.get("/products/:id/delete", middleware.isLogged, productsController.delete);
 
 module.exports = route;
