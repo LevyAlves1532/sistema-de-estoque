@@ -2,14 +2,15 @@
 <%- include("includes/nav", { activeMenu: "account" }); %>
 
 <section class="container-lg pt-5">
-  <form>
+  <%- include("includes/messages"); %>
+  <form method="post" action="/account/edit">
     <div class="form-group">
-      <label for="form-sign-in-email">E-mail:</label>
-      <input type="email" class="form-control" id="form-sign-in-email">
+      <label for="form-account-email">E-mail:</label>
+      <input type="email" class="form-control" name="email" value="<%= email %>" id="form-account-email">
     </div>
     <div class="form-group">
-      <label for="form-sign-in-password">Nova Senha:</label>
-      <input type="password" class="form-control" id="form-sign-in-password">
+      <label for="form-account-password">Nova Senha:</label>
+      <input type="password" class="form-control" name="password" id="form-account-password">
     </div>
     <button type="submit" class="btn btn-primary">Salvar Alterações</button>
   </form>

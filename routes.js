@@ -14,6 +14,7 @@ route.get("/", middleware.isLogged, homeController.index);
 
 // ACCOUNT
 route.get("/account", middleware.isLogged, accountController.index);
+route.post("/account/edit", middleware.isLogged, accountController.edit);
 route.get("/account/logout", middleware.isLogged, accountController.logout);
 route.get("/account/sign-in", accountController.signIn);
 route.post("/account/sign-in/user", accountController.login);

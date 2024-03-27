@@ -46,16 +46,42 @@ class Users {
     this.user = await UsersModel.create(this.body);
   }
 
+  async up(_id, user) {
+    if (typeof _id !== "string") return;
+
+    this.validate(true);
+    if (this.errors.length > 0) return;
+
+    for (let key in this.body) {
+      if (!this.body[key] || this.body[key] === user[key]) delete this.body[key];
+    }
+
+    if (this.body.email) {
+      await this.isUser();
+      if (this.errors.length > 0) return;
+    }
+
+    const salt = bcryptjs.genSaltSync();
+    if (this.body.password) {
+      this.body.password = bcryptjs.hashSync(this.body.password, salt);
+    }
+
+    this.user = await UsersModel.findByIdAndUpdate(_id, this.body, { new: true });
+  }
+
   async isUser() {
     this.user = await UsersModel.findOne({ email: this.body.email });
     if (this.user) this.errors.push("Já existe um usuário com esse e-mail!");
   }
 
-  validate() {
+  validate(edit = false) {
     this.normalizeBody();
 
-    if (!validator.isEmail(this.body.email)) this.errors.push("E-mail inválido!");
-    if (this.body.password.length < 6 || this.body.password.length > 12) this.errors.push("Senha precisa estar entre 6 e 12 caracteres!");
+    const isEmail = validator.isEmail(this.body.email);
+    const isPassword = this.body.password.length < 6 || this.body.password.length > 12;
+
+    if ((!edit && !isEmail) || (edit && this.body.email.length > 0 && !isEmail)) this.errors.push("E-mail inválido!");
+    if ((!edit && isPassword) || (edit && this.body.password.length > 0 && isPassword)) this.errors.push("Senha precisa estar entre 6 e 12 caracteres!");
   }
 
   normalizeBody() {
