@@ -1,5 +1,5 @@
 ## Sistema de Gerenciamento de Estoque
-Este foi um projeto construido como parte de um aprendizado que tive no "Curso de JavaScript e TypeScript do básico ao avançado JS/TS" da udemy, fiz um projeto neste curso voltado para o gerenciamento de contatos e baseado neste projeto fiz um voltado ao gerenciamento de estoque, implementei funcionalidades novas commo upload de imagens com o multer, filtro por categoria e relação entre as collections criadas dentro do MongoDB.
+Este foi um projeto construido como parte de um aprendizado que tive no "Curso de JavaScript e TypeScript do básico ao avançado JS/TS" da udemy, fiz um projeto neste curso voltado para o gerenciamento de contatos e baseado neste projeto fiz um voltado ao gerenciamento de estoque, implementei funcionalidades novas como upload de imagens com o multer, filtro por categoria e relação entre as collections criadas dentro do MongoDB.
 
 ## Tecnologias
 
