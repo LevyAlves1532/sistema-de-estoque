@@ -30,7 +30,7 @@ export class FormAccount {
     const emailInput = el.querySelector('input[name="email"]');
     const passwordInput = el.querySelector('input[name="password"]');
 
-    if (!emailInput.value || validator.isEmail(emailInput.value)) this.errors.push("E-mail inválido!");
+    if (!emailInput.value || !validator.isEmail(emailInput.value)) this.errors.push("E-mail inválido!");
     if (passwordInput.value.length < 6 || passwordInput.value.length > 12) this.errors.push("Senha precisa estar entre 6 e 12 caracteres!");
 
     if (this.errors.length === 0) {
