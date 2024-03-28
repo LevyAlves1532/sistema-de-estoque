@@ -72,24 +72,31 @@ exports.form = (edit) => async (req, res) => {
 };
 
 exports.register = async (req, res) => {
-  try {
-    const productsModel = new ProductsModel(req.body);
-    await productsModel.set(req.session.user._id, req.file.filename);
-  
-    if (productsModel.errors.length > 0) {
-      req.flash("errors", productsModel.errors);
+  if (req.file) {
+    try {
+      const productsModel = new ProductsModel(req.body);
+      await productsModel.set(req.session.user._id, req.file.filename);
+    
+      if (productsModel.errors.length > 0) {
+        req.flash("errors", productsModel.errors);
+        req.session.save(() => {
+          return res.redirect("/products/add");
+        });
+        return;
+      }
+    
+      req.flash("success", "Seu produto foi criado com sucesso.");
       req.session.save(() => {
-        return res.redirect("/products/add");
-      });
-      return;
+        return res.redirect("/products");
+      });;
+    } catch(e) {
+      console.log(e);
+      res.render("404");
     }
-  
-    req.flash("success", "Seu produto foi criado com sucesso.");
+  } else {
+    req.flash("errors", ["Precisa ser enviado a imagem do produto"]);
     req.session.save(() => {
-      return res.redirect("/products");
-    });;
-  } catch(e) {
-    console.log(e);
-    res.render("404");
+      return res.redirect("/products/add");
+    });
   }
 };

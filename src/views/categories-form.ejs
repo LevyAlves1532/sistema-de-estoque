@@ -4,6 +4,10 @@
 <div class="container-lg pt-5">
   <h4 class="text-center"><%= (!data) ? "Adicionar Nova Categoria" : "Edite a Categoria" %></h4>
 
+  <%- include("includes/messages"); %>
+
+  <div class="messages-categories"></div>
+
   <form method="post" action="<%= (!data) ? "/categories/add/form" : `/categories/${data._id}/edit` %>" class="form-categories" class="mb-4">
     <div class="form-group">
       <label for="form-categories-name">Nome da Categoria:</label>
@@ -15,8 +19,6 @@
     </div>
     <button type="submit" class="btn btn-success"><%= (!data) ? "Criar Nova Categoria" : "Salvar Alterações" %></button>
   </form>
-
-  <%- include("includes/messages"); %>
 </div>
 
 <%- include("includes/footer.ejs") %>

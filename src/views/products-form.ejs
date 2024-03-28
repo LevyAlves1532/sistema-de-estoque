@@ -6,6 +6,8 @@
 
   <%- include("includes/messages"); %>
 
+  <div class="messages-products"></div>
+
   <form method="post" action="<%= (!data) ? "/products/add/form" : `/products/${data._id}/edit` %>" enctype="multipart/form-data" class="mb-4 form-products">
     <div class="row">
       <div class="col-md-4">

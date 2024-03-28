@@ -3,7 +3,10 @@
 
 <section class="container-lg pt-5">
   <%- include("includes/messages"); %>
-  <form method="post" action="/account/edit">
+
+  <div class="messages-profile"></div>
+
+  <form method="post" action="/account/edit" class="form-profile">
     <div class="form-group">
       <label for="form-account-email">E-mail:</label>
       <input type="email" class="form-control" name="email" value="<%= email %>" id="form-account-email">

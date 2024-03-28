@@ -5,7 +5,7 @@
     <div class="sign-in-form rounded">
       <h4 class="text-center mb-4">Faça seu Login</h4>
 
-      <form method="post" action="/account/sign-in/user" class="mb-4">
+      <form method="post" action="/account/sign-in/user" class="mb-4 form-account">
         <div class="form-group">
           <label for="form-sign-in-email">E-mail:</label>
           <input type="email" class="form-control" name="email" id="form-sign-in-email">
@@ -20,6 +20,8 @@
       <p class="text-center text-dark">Não tem conta? <a href="/account/sign-up">Clique aqui</a>!</p>
 
       <%- include("includes/messages.ejs") %>
+
+      <div class="messages-account"></div>
     </div>
   </div>
 </section>
